@@ -1,9 +1,12 @@
 import React from "react";
 import axios from "axios";
+import { connect } from "react-redux";
+import actions from "../../store/actions";
+import store from "../../store/store";
 
-export default class Landing extends React.Component {
-    constructor() {
-        super();
+class Landing extends React.Component {
+    constructor(props) {
+        super(props);
         this.state = {
             customers: [],
         };
@@ -21,6 +24,14 @@ export default class Landing extends React.Component {
             .catch((err) => console.log(err));
     }
 
+    storeCustomerObject(customer) {
+        store.dispatch({
+            type: actions.STORE_CUSTOMER,
+            payload: customer,
+        });
+        this.props.history.push("/profile");
+    }
+
     render() {
         return (
             <div>
@@ -32,6 +43,9 @@ export default class Landing extends React.Component {
                                     <td
                                         key={customer.id}
                                         style={{ border: "1px solid #333" }}
+                                        onClick={() =>
+                                            this.storeCustomerObject(customer)
+                                        }
                                     >
                                         {customer.last_name +
                                             ", " +
@@ -46,3 +60,11 @@ export default class Landing extends React.Component {
         );
     }
 }
+
+function mapStateToProps(state) {
+    return {
+        customer: state.customer,
+    };
+}
+
+export default connect(mapStateToProps)(Landing);
