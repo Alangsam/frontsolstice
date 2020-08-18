@@ -14,6 +14,7 @@ export default class AccountEntry extends React.Component {
             "https://raw.githubusercontent.com/Alangsam/solstice/5e5769c39ca3513a49feaa09e38028492bc53cfa/accounts.json"
         )
             .then((res) => {
+                // eslint-disable-next-line
                 const matchedAccounts = res.data.filter((accObj) => {
                     if (accObj.customer_id === this.props.id) {
                         return accObj;
@@ -29,41 +30,145 @@ export default class AccountEntry extends React.Component {
                 <div className="col-8 offset-2">
                     <table>
                         <tbody>
-                            {this.state.accounts.map((account) => {
+                            {this.state.accounts.map((account, index) => {
                                 return (
-                                    <tr
-                                        className=""
-                                        style={{ border: "1px solid #333" }}
-                                    >
-                                        <tr>
-                                            <td>Address</td>
-                                            <td>{account.address}</td>
+                                    <>
+                                        <tr
+                                            style={{
+                                                borderTop: "1px solid #333",
+                                            }}
+                                        >
+                                            <td rowSpan="7" className="px-4">
+                                                {index + 1}
+                                            </td>
+                                            <td
+                                                style={{
+                                                    borderTop: "1px solid #333",
+                                                    borderLeft:
+                                                        "1px solid #333",
+                                                }}
+                                            >
+                                                Address
+                                            </td>
+                                            <td
+                                                style={{
+                                                    borderLeft:
+                                                        "1px solid #333",
+                                                }}
+                                            >
+                                                {account.address}
+                                            </td>
                                         </tr>
                                         <tr>
-                                            <td>City</td>
-                                            <td>{account.city}</td>
+                                            <td
+                                                style={{
+                                                    borderLeft:
+                                                        "1px solid #333",
+                                                }}
+                                            >
+                                                City
+                                            </td>
+                                            <td
+                                                style={{
+                                                    borderLeft:
+                                                        "1px solid #333",
+                                                }}
+                                            >
+                                                {" "}
+                                                {account.city}
+                                            </td>
                                         </tr>
                                         <tr>
-                                            <td>State</td>
-                                            <td>{account.state}</td>
+                                            <td
+                                                style={{
+                                                    borderLeft:
+                                                        "1px solid #333",
+                                                }}
+                                            >
+                                                State
+                                            </td>
+                                            <td
+                                                style={{
+                                                    borderLeft:
+                                                        "1px solid #333",
+                                                }}
+                                            >
+                                                {account.state}
+                                            </td>
                                         </tr>
                                         <tr>
-                                            <td>Zip Code</td>
-                                            <td>{account.zip_code}</td>
+                                            <td
+                                                style={{
+                                                    borderLeft:
+                                                        "1px solid #333",
+                                                }}
+                                            >
+                                                Zip Code
+                                            </td>
+                                            <td
+                                                style={{
+                                                    borderLeft:
+                                                        "1px solid #333",
+                                                }}
+                                            >
+                                                {account.zip_code}
+                                            </td>
                                         </tr>
                                         <tr>
-                                            <td>Solar Farm Id</td>
-                                            <td>{account.solar_farm_id}</td>
+                                            <td
+                                                style={{
+                                                    borderLeft:
+                                                        "1px solid #333",
+                                                }}
+                                            >
+                                                Solar Farm Id
+                                            </td>
+                                            <td
+                                                style={{
+                                                    borderLeft:
+                                                        "1px solid #333",
+                                                }}
+                                            >
+                                                {account.solar_farm_id}
+                                            </td>
                                         </tr>
                                         <tr>
-                                            <td>Capacity Share</td>
-                                            <td>{account.capacity_share}</td>
+                                            <td
+                                                style={{
+                                                    borderLeft:
+                                                        "1px solid #333",
+                                                }}
+                                            >
+                                                Capacity Share
+                                            </td>
+                                            <td
+                                                style={{
+                                                    borderLeft:
+                                                        "1px solid #333",
+                                                }}
+                                            >
+                                                {account.capacity_share}
+                                            </td>
                                         </tr>
                                         <tr>
-                                            <td>Created On</td>
-                                            <td>{account.created_date}</td>
+                                            <td
+                                                style={{
+                                                    borderLeft:
+                                                        "1px solid #333",
+                                                }}
+                                            >
+                                                Created On
+                                            </td>
+                                            <td
+                                                style={{
+                                                    borderLeft:
+                                                        "1px solid #333",
+                                                }}
+                                            >
+                                                {account.created_date}
+                                            </td>
                                         </tr>
-                                    </tr>
+                                    </>
                                 );
                             })}
                         </tbody>
