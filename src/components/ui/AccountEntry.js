@@ -10,9 +10,7 @@ export default class AccountEntry extends React.Component {
         };
     }
     componentDidMount() {
-        Axios.get(
-            "https://raw.githubusercontent.com/Alangsam/solstice/5e5769c39ca3513a49feaa09e38028492bc53cfa/accounts.json"
-        )
+        Axios.get("/api/v1/accounts.json")
             .then((res) => {
                 // eslint-disable-next-line
                 const matchedAccounts = res.data.filter((accObj) => {

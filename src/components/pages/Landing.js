@@ -14,9 +14,7 @@ class Landing extends React.Component {
 
     componentDidMount() {
         axios
-            .get(
-                "https://raw.githubusercontent.com/Alangsam/solstice/master/initial.json"
-            )
+            .get("/api/v1/initial.json")
             .then((res) => {
                 console.log(res.data);
                 this.setState({ customers: res.data });
