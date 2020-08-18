@@ -12,16 +12,36 @@ export default class Landing extends React.Component {
     componentDidMount() {
         axios
             .get(
-                "https://raw.githubusercontent.com/Alangsam/solstice/master/initial.js"
+                "https://raw.githubusercontent.com/Alangsam/solstice/master/initial.json"
             )
-            .then((res) => console.log(res.data))
+            .then((res) => {
+                console.log(res.data);
+                this.setState({ customers: res.data });
+            })
             .catch((err) => console.log(err));
     }
 
     render() {
         return (
             <div>
-                <table>{}</table>
+                <table>
+                    <tbody>
+                        {this.state.customers.map((customer) => {
+                            return (
+                                <tr key={"row: " + customer.id}>
+                                    <td
+                                        key={customer.id}
+                                        style={{ border: "1px solid #333" }}
+                                    >
+                                        {customer.last_name +
+                                            ", " +
+                                            customer.first_name}
+                                    </td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
             </div>
         );
     }
